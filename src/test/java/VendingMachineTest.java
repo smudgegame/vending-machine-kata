@@ -8,7 +8,7 @@ public class VendingMachineTest {
 
     @BeforeClass
     public static void setUp() {
-        vendingMachine = new VendingMachine();
+        vendingMachine = new VendingMachine(0);
     }
 
     @Test
@@ -24,6 +24,13 @@ public class VendingMachineTest {
     @Test
     public void noCoinDisplay() {
         assertEquals("INSERT COIN", vendingMachine.display(0));
+    }
+
+    @Test
+    public void displayCoinValue() {
+        VendingMachine vendingMachine = new VendingMachine(0);
+        int sum = vendingMachine.getCoin(1);
+        assertEquals("$0.10", vendingMachine.display(sum));
     }
 
 }
