@@ -38,4 +38,9 @@ public class VendingMachineTest {
         assertEquals(1, vendingMachine.getCoin(2));
     }
 
+    @Test
+    public void nickleValue() {
+        assertEquals(5, vendingMachine.getCoin(3));
+    }
+
 }
