@@ -29,41 +29,46 @@ public class VendingMachineTest {
         vendingMachine = new VendingMachine(0, coinHash);
     }
 
-    @Test
-    public void coinWeight() {
-        assertEquals(0, vendingMachine.getCoin(0));
-    }
 
     @Test
     public void coinValue() {
-        assertEquals(10, vendingMachine.getCoin(1));
+        vendingMachine.reset();
+        assertEquals("10", vendingMachine.addCoin(1));
     }
 
     @Test
     public void noCoinDisplay() {
-        assertEquals("INSERT COIN", vendingMachine.display(0));
+        vendingMachine.reset();
+        assertEquals("INSERT COIN", vendingMachine.addCoin(0));
     }
 
     @Test
     public void displayCoinValue() {
         vendingMachine.reset();
-        int sum = vendingMachine.getCoin(1);
-        assertEquals("$0.10", vendingMachine.display(sum));
+        assertEquals("10", vendingMachine.addCoin(1));
     }
 
     @Test
     public void pennyValue() {
-        assertEquals(1, vendingMachine.getCoin(2));
+        vendingMachine.reset();
+        assertEquals("1", vendingMachine.addCoin(2));
     }
 
     @Test
     public void nickleValue() {
-        assertEquals(5, vendingMachine.getCoin(3));
+        vendingMachine.reset();
+        assertEquals("5", vendingMachine.addCoin(3));
     }
 
     @Test
     public void quarterValue() {
-        assertEquals(25, vendingMachine.getCoin(4));
+        vendingMachine.reset();
+        assertEquals("25", vendingMachine.addCoin(4));
+    }
+
+    @Test
+    public void rejectPennies() {
+
     }
 
 }

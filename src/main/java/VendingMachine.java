@@ -10,16 +10,12 @@ public class VendingMachine {
         this.coinHash = coinHash;
     }
 
-    public int getCoin(int weight) {
+    public String addCoin(int weight) {
         int value = coinHash.getOrDefault(weight, 0);
         sum += value;
-        return value;
-    }
-
-    public String display(int sum) {
         String display;
         if (sum == 0) display = "INSERT COIN";
-        else display = "$0." + this.sum;
+        else display = "" + this.sum;
         return display;
     }
 
