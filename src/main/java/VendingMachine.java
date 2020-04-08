@@ -13,10 +13,8 @@ public class VendingMachine {
     public String addCoin(int weight) {
         int value = coinHash.getOrDefault(weight, 0);
         sum += value;
-        String display;
-        if (sum == 0) display = "INSERT COIN";
-        else display = "" + this.sum;
-        return display;
+        Display display = new Display();
+        return display.showDisplay(sum);
     }
 
     public void reset() {
