@@ -3,6 +3,7 @@ public class VendingMachine {
     private static final int DIME_WEIGHT = 1;
     private static final int PENNY_WEIGHT = 2;
     private static final int NICKLE_WEIGHT = 3;
+    private static final int QUARTER_WEIGHT = 4;
     private int sum;
 
     public VendingMachine(int sum) {
@@ -17,6 +18,8 @@ public class VendingMachine {
             value = 1;
         if (weight == NICKLE_WEIGHT)
             value = 5;
+        if (weight == QUARTER_WEIGHT)
+            value = 25;
         sum += value;
         return value;
     }

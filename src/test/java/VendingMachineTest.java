@@ -43,4 +43,9 @@ public class VendingMachineTest {
         assertEquals(5, vendingMachine.getCoin(3));
     }
 
+    @Test
+    public void quarterValue() {
+        assertEquals(25, vendingMachine.getCoin(4));
+    }
+
 }
