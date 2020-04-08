@@ -1,25 +1,17 @@
+import java.util.Map;
+
 public class VendingMachine {
 
-    private static final int DIME_WEIGHT = 1;
-    private static final int PENNY_WEIGHT = 2;
-    private static final int NICKLE_WEIGHT = 3;
-    private static final int QUARTER_WEIGHT = 4;
+    private Map<Integer, Integer> coinHash;
     private int sum;
 
-    public VendingMachine(int sum) {
+    public VendingMachine(int sum, Map<Integer, Integer> coinHash) {
         this.sum = sum;
+        this.coinHash = coinHash;
     }
 
     public int getCoin(int weight) {
-        int value = 0;
-        if (weight == DIME_WEIGHT)
-            value = 10;
-        if (weight == PENNY_WEIGHT)
-            value = 1;
-        if (weight == NICKLE_WEIGHT)
-            value = 5;
-        if (weight == QUARTER_WEIGHT)
-            value = 25;
+        int value = coinHash.getOrDefault(weight, 0);
         sum += value;
         return value;
     }
@@ -29,6 +21,10 @@ public class VendingMachine {
         if (sum == 0) display = "INSERT COIN";
         else display = "$0." + this.sum;
         return display;
+    }
+
+    public void reset() {
+        sum = 0;
     }
 
 }
