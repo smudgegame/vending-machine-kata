@@ -1,6 +1,7 @@
 public class VendingMachine {
 
     private static final int DIME_WEIGHT = 1;
+    private static final int PENNY_WEIGHT = 2;
     private int sum;
 
     public VendingMachine(int sum) {
@@ -11,6 +12,8 @@ public class VendingMachine {
         int value = 0;
         if (weight == DIME_WEIGHT)
             value = 10;
+        if (weight == PENNY_WEIGHT)
+            value = 1;
         sum += value;
         return value;
     }

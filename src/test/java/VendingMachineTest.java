@@ -33,4 +33,9 @@ public class VendingMachineTest {
         assertEquals("$0.10", vendingMachine.display(sum));
     }
 
+    @Test
+    public void pennyValue() {
+        assertEquals(1, vendingMachine.getCoin(2));
+    }
+
 }
