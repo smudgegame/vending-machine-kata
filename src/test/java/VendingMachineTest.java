@@ -33,7 +33,7 @@ public class VendingMachineTest {
     @Test
     public void coinValue() {
         vendingMachine.reset();
-        assertEquals("10", vendingMachine.addCoin(1));
+        assertEquals("$0.10", vendingMachine.addCoin(1));
     }
 
     @Test
@@ -42,28 +42,23 @@ public class VendingMachineTest {
         assertEquals("INSERT COIN", vendingMachine.addCoin(0));
     }
 
-    @Test
-    public void displayCoinValue() {
-        vendingMachine.reset();
-        assertEquals("10", vendingMachine.addCoin(1));
-    }
 
     @Test
     public void pennyValue() {
         vendingMachine.reset();
-        assertEquals("1", vendingMachine.addCoin(2));
+        assertEquals("$0.01", vendingMachine.addCoin(2));
     }
 
     @Test
     public void nickleValue() {
         vendingMachine.reset();
-        assertEquals("5", vendingMachine.addCoin(3));
+        assertEquals("$0.05", vendingMachine.addCoin(3));
     }
 
     @Test
     public void quarterValue() {
         vendingMachine.reset();
-        assertEquals("25", vendingMachine.addCoin(4));
+        assertEquals("$0.25", vendingMachine.addCoin(4));
     }
 
     @Test
