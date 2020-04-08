@@ -21,4 +21,9 @@ public class VendingMachineTest {
         assertEquals(10, vendingMachine.getCoin(1));
     }
 
+    @Test
+    public void noCoinDisplay() {
+        assertEquals("INSERT COIN", vendingMachine.display(0));
+    }
+
 }

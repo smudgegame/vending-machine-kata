@@ -9,4 +9,9 @@ public class VendingMachine {
         return value;
     }
 
+    public String display(int sum) {
+        String display = "INSERT COIN";
+        return display;
+    }
+
 }
