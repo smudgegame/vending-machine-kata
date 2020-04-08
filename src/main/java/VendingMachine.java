@@ -11,9 +11,11 @@ public class VendingMachine {
     }
 
     public String addCoin(int weight) {
+        Display display = new Display();
+        if(weight==2)
+            return display.showDisplay(sum);
         int value = coinHash.getOrDefault(weight, 0);
         sum += value;
-        Display display = new Display();
         return display.showDisplay(sum);
     }
 

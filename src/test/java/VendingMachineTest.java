@@ -44,12 +44,6 @@ public class VendingMachineTest {
 
 
     @Test
-    public void pennyValue() {
-        vendingMachine.reset();
-        assertEquals("$0.01", vendingMachine.addCoin(2));
-    }
-
-    @Test
     public void nickleValue() {
         vendingMachine.reset();
         assertEquals("$0.05", vendingMachine.addCoin(3));
@@ -63,7 +57,8 @@ public class VendingMachineTest {
 
     @Test
     public void rejectPennies() {
-
+        vendingMachine.reset();
+        assertEquals("INSERT COIN", vendingMachine.addCoin(2));
     }
 
 }
