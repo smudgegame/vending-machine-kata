@@ -33,7 +33,7 @@ public class VendingMachineTest {
     @Test
     public void coinValue() {
         vendingMachine.reset();
-        assertEquals("$0.10", vendingMachine.addCoin(1));
+        assertEquals("$0.1", vendingMachine.addCoin(1));
     }
 
     @Test

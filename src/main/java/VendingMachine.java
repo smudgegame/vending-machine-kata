@@ -11,12 +11,23 @@ public class VendingMachine {
     }
 
     public String addCoin(int weight) {
-        Display display = new Display();
-        if(weight==2)
-            return display.showDisplay(sum);
-        int value = coinHash.getOrDefault(weight, 0);
-        sum += value;
-        return display.showDisplay(sum);
+        if (isCoinValid(weight)) {
+            sum += coinHash.getOrDefault(weight, 0);
+        }
+        return showDisplay(sum);
+    }
+
+    private String showDisplay(int sum) {
+        String display;
+        if (sum == 0) display = "INSERT COIN";
+        else display = "$" + (double) sum / 100;
+        return display;
+    }
+
+    private boolean isCoinValid(int weight) {
+        if (weight == 1 || weight == 3 || weight == 4) {
+            return true;
+        } else return false;
     }
 
     public void reset() {
