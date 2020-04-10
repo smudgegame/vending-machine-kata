@@ -44,7 +44,6 @@ public class VendingMachineTest {
     @Test
     public void displaysInsertedCoin() {
         VendingMachine vendingMachine = new VendingMachine();
-        assertEquals("$0.1", vendingMachine.display(10));
-        //TODO need to have this display $0.10
+        assertEquals("INSERT COIN", vendingMachine.display());
     }
 }

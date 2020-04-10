@@ -18,7 +18,7 @@ public class VendingMachine {
         return 0;
     }
 
-    public String display(int sum) {
-        return "$" + (double) sum / 100;
+    public String display() {
+        return "INSERT COIN";
     }
 }
