@@ -12,9 +12,13 @@ public class VendingMachine {
                 return 10;
             if (coin.equalsIgnoreCase("nickle"))
                 return 5;
-            if( coin.equalsIgnoreCase("quarter"))
+            if (coin.equalsIgnoreCase("quarter"))
                 return 25;
         }
         return 0;
+    }
+
+    public String display(int sum) {
+        return "$" + (double) sum / 100;
     }
 }
