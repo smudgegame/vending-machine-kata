@@ -5,7 +5,11 @@ public class VendingMachine {
     }
 
     public int insertCoin(int coinWeight) {
-        if (coinWeight==1) return 10;
+        if (coinWeight == 1) return 10;
         return 0;
+    }
+
+    public String display() {
+        return "INSERT COIN";
     }
 }

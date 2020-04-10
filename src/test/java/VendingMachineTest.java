@@ -16,7 +16,13 @@ public class VendingMachineTest {
     @Test
     public void insertCoin() {
         VendingMachine vendingMachine = new VendingMachine();
-        assertEquals(10,vendingMachine.insertCoin(DIME_WEIGHT));
+        assertEquals(10, vendingMachine.insertCoin(DIME_WEIGHT));
+    }
+
+    @Test
+    public void insertCoinDisplay() {
+        VendingMachine vendingMachine = new VendingMachine();
+        assertEquals("INSERT COIN", vendingMachine.display());
     }
 
 }
