@@ -9,4 +9,10 @@ public class VendingMachineTest {
         VendingMachine vendingMachine = new VendingMachine();
         assertEquals(true, VendingMachine.isValid("Dime"));
     }
+
+    @Test
+    public void nickleIsValid() {
+        VendingMachine vendingMachine = new VendingMachine();
+        assertEquals(true, vendingMachine.isValid("Nickle"));
+    }
 }
