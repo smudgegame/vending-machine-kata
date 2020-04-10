@@ -6,4 +6,8 @@ public class VendingMachine {
         return coin.equalsIgnoreCase("quarter");
     }
 
+    public int insertCoin(String coin) {
+        if (isValid(coin)) return 10;
+        return 0;
+    }
 }

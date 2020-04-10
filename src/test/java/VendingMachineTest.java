@@ -17,8 +17,14 @@ public class VendingMachineTest {
     }
 
     @Test
-    public void quarterIsValidCoin(){
+    public void quarterIsValidCoin() {
         VendingMachine vendingMachine = new VendingMachine();
         assertEquals(true, vendingMachine.isValid("Quarter"));
+    }
+
+    @Test
+    public void addDimeValue() {
+        VendingMachine vendingMachine = new VendingMachine();
+        assertEquals(10, vendingMachine.insertCoin("Dime"));
     }
 }
