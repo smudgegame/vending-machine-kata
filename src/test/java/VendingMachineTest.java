@@ -1,25 +1,26 @@
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class VendingMachineTest {
 
     @Test
     public void dimeIsValidCoin() {
         VendingMachine vendingMachine = new VendingMachine();
-        assertEquals(true, VendingMachine.isValid("Dime"));
+        assertTrue(VendingMachine.isValid("Dime"));
     }
 
     @Test
     public void nickleIsValidCoin() {
         VendingMachine vendingMachine = new VendingMachine();
-        assertEquals(true, vendingMachine.isValid("Nickle"));
+        assertTrue(VendingMachine.isValid("Nickle"));
     }
 
     @Test
     public void quarterIsValidCoin() {
         VendingMachine vendingMachine = new VendingMachine();
-        assertEquals(true, vendingMachine.isValid("Quarter"));
+        assertTrue(VendingMachine.isValid("Quarter"));
     }
 
     @Test
@@ -33,4 +34,11 @@ public class VendingMachineTest {
         VendingMachine vendingMachine = new VendingMachine();
         assertEquals(5, vendingMachine.insertCoin("Nickle"));
     }
+
+    @Test
+    public void addQuarterValue() {
+        VendingMachine vendingMachine = new VendingMachine();
+        assertEquals(25, vendingMachine.insertCoin("Quarter"));
+    }
+
 }
