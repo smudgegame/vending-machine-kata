@@ -31,5 +31,9 @@ public class VendingMachine {
         else return "$" + (double) sum / 100;
     }
 
+    public void reset() {
+        sum=0;
+    }
+
 
 }

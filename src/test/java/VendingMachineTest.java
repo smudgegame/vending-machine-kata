@@ -34,15 +34,13 @@ public class VendingMachineTest {
 
     @Test
     public void insertCoinDisplay() {
-        VendingMachine vendingMachine = new VendingMachine(0, new HashMap<>());
+        vendingMachine.reset();
         assertEquals("INSERT COIN", vendingMachine.display());
     }
 
     @Test
     public void oneCoinValueDisplayed() {
-        Map<Integer, Integer> coinValue = new HashMap<>();
-        coinValue.put(DIME,10);
-        VendingMachine vendingMachine = new VendingMachine(0, coinValue);
+        vendingMachine.reset();
         vendingMachine.insertCoin(DIME);
         assertEquals("$0.1", vendingMachine.display());
         //TODO this should read $0.10
@@ -50,9 +48,7 @@ public class VendingMachineTest {
 
     @Test
     public void twoCoinValueDisplayed() {
-        Map<Integer, Integer> coinValue = new HashMap<>();
-        coinValue.put(DIME,10);
-        VendingMachine vendingMachine = new VendingMachine(0, coinValue);
+        vendingMachine.reset();
         vendingMachine.insertCoin(DIME);
         vendingMachine.insertCoin(DIME);
         assertEquals("$0.2", vendingMachine.display());
@@ -66,9 +62,7 @@ public class VendingMachineTest {
 
     @Test
     public void coinValueHash() {
-        Map<Integer, Integer> coinValue = new HashMap<>();
-        coinValue.put(DIME,10);
-        VendingMachine vendingMachine = new VendingMachine(0, coinValue);
+        vendingMachine.reset();
         assertEquals(10, vendingMachine.insertCoin(DIME));
     }
 
