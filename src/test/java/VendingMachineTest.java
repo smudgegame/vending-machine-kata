@@ -10,26 +10,25 @@ import static org.junit.Assert.assertTrue;
 public class VendingMachineTest {
 
     private static final int DIME = 1;
+    private static final int PENNY = 2;
     private static final int NICKEL = 3;
+    private static final int QUARTER = 4;
 
     private static VendingMachine vendingMachine;
 
     @BeforeClass
     public static void setUp() {
         Map<Integer, Integer> coinValue = new HashMap<>();
-        coinValue.put(DIME,10);
-        coinValue.put(NICKEL,5);
-        vendingMachine = new VendingMachine(0, coinValue);
+        coinValue.put(DIME, 10);
+        coinValue.put(NICKEL, 5);
+        coinValue.put(QUARTER, 25);
+        Map<Integer, Integer> coinReturn = new HashMap<>();
+        vendingMachine = new VendingMachine(0, coinValue, coinReturn);
     }
 
     @Test
     public void isValidCoin() {
         assertTrue(vendingMachine.isValid(DIME));
-    }
-
-    @Test
-    public void insertCoin() {
-        assertEquals(10, vendingMachine.insertCoin(DIME));
     }
 
     @Test
@@ -61,9 +60,8 @@ public class VendingMachineTest {
     }
 
     @Test
-    public void coinValueHash() {
-        vendingMachine.reset();
-        assertEquals(10, vendingMachine.insertCoin(DIME));
+    public void toCoinReturn(){
+        assertEquals(1, vendingMachine.toCoinReturn(PENNY));
     }
 
 }
