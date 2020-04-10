@@ -27,4 +27,10 @@ public class VendingMachineTest {
         VendingMachine vendingMachine = new VendingMachine();
         assertEquals(10, vendingMachine.insertCoin("Dime"));
     }
+
+    @Test
+    public void addNickleValue() {
+        VendingMachine vendingMachine = new VendingMachine();
+        assertEquals(5, vendingMachine.insertCoin("Nickle"));
+    }
 }

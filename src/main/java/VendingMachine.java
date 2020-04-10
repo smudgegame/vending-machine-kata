@@ -7,7 +7,12 @@ public class VendingMachine {
     }
 
     public int insertCoin(String coin) {
-        if (isValid(coin)) return 10;
+        if (isValid(coin)) {
+            if (coin.equalsIgnoreCase("dime"))
+                return 10;
+            if (coin.equalsIgnoreCase("nickle"))
+                return 5;
+        }
         return 0;
     }
 }
