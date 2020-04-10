@@ -16,7 +16,7 @@ public class VendingMachine {
 
     public int insertCoin(int coinWeight) {
         if (coinWeight == DIME) {
-            sum = 10;
+            sum += 10;
             return 10;
         }
         return 0;

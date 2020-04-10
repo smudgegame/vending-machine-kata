@@ -33,4 +33,13 @@ public class VendingMachineTest {
         //TODO this should read $0.10
     }
 
+    @Test
+    public void twoCoinValueDisplayed() {
+        VendingMachine vendingMachine = new VendingMachine(0);
+        vendingMachine.insertCoin(DIME);
+        vendingMachine.insertCoin(DIME);
+        assertEquals("$0.2",vendingMachine.display());
+        //TODO this should read $0.20
+    }
+
 }
