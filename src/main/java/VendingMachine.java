@@ -4,22 +4,28 @@ import java.util.Map;
 public class VendingMachine {
 
     private static final int DIME = 1;
-    private int sum = 0;
+    private static final int NICKEL = 3;
 
-    public VendingMachine(int sum) {
+    private int sum = 0;
+    private Map<Integer, Integer> coinValue;
+
+    public VendingMachine(int sum, Map<Integer, Integer> coinValue) {
         this.sum = sum;
+        this.coinValue = coinValue;
+
+        coinValue.put(DIME,10);
+        coinValue.put(NICKEL,5);
     }
 
     public boolean isValid(int weight) {
-        return weight == DIME;
+        return coinValue.containsKey(weight);
     }
 
     public int insertCoin(int coinWeight) {
-        if (coinWeight == DIME) {
-            sum += 10;
-            return 10;
+        if (isValid(coinWeight)) {
+            sum += coinValue.get(coinWeight);
         }
-        return 0;
+        return coinValue.getOrDefault(coinWeight,0);
     }
 
     public String display() {
