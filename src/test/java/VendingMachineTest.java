@@ -60,8 +60,17 @@ public class VendingMachineTest {
     }
 
     @Test
-    public void toCoinReturn(){
-        assertEquals(1, vendingMachine.toCoinReturn(PENNY));
+    public void toCoinReturn() {
+        vendingMachine.insertCoin(PENNY);
+        assertEquals(1, vendingMachine.inCoinReturn(PENNY));
+    }
+
+    @Test
+    public void test() {
+        vendingMachine.reset();
+        vendingMachine.insertCoin(PENNY);
+        vendingMachine.insertCoin(PENNY);
+        assertEquals(2,vendingMachine.inCoinReturn(PENNY));
     }
 
 }

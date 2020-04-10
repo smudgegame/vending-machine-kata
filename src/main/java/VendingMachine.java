@@ -1,4 +1,3 @@
-import java.util.HashMap;
 import java.util.Map;
 
 public class VendingMachine {
@@ -21,6 +20,9 @@ public class VendingMachine {
         if (isValid(coinWeight)) {
             sum += coinValue.get(coinWeight);
         }
+        else{
+            toCoinReturn(coinWeight);
+        }
     }
 
     public String display() {
@@ -29,10 +31,13 @@ public class VendingMachine {
         else return "$" + (double) sum / 100;
     }
 
-    public int toCoinReturn(int weight) {
+    private void toCoinReturn(int weight) {
         int currentCount = coinReturn.getOrDefault(weight, 0);
         coinReturn.put(weight, currentCount + 1);
-        return coinReturn.get(weight);
+    }
+
+    public int inCoinReturn(int weight) {
+        return coinReturn.getOrDefault(weight,0);
     }
 
     public void reset() {
