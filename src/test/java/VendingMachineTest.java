@@ -2,6 +2,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -15,7 +16,10 @@ public class VendingMachineTest {
 
     @BeforeClass
     public static void setUp() {
-        vendingMachine = new VendingMachine(0, new HashMap<>());
+        Map<Integer, Integer> coinValue = new HashMap<>();
+        coinValue.put(DIME,10);
+        coinValue.put(NICKEL,5);
+        vendingMachine = new VendingMachine(0, coinValue);
     }
 
     @Test
@@ -36,7 +40,9 @@ public class VendingMachineTest {
 
     @Test
     public void oneCoinValueDisplayed() {
-        VendingMachine vendingMachine = new VendingMachine(0, new HashMap<>());
+        Map<Integer, Integer> coinValue = new HashMap<>();
+        coinValue.put(DIME,10);
+        VendingMachine vendingMachine = new VendingMachine(0, coinValue);
         vendingMachine.insertCoin(DIME);
         assertEquals("$0.1", vendingMachine.display());
         //TODO this should read $0.10
@@ -44,7 +50,9 @@ public class VendingMachineTest {
 
     @Test
     public void twoCoinValueDisplayed() {
-        VendingMachine vendingMachine = new VendingMachine(0, new HashMap<>());
+        Map<Integer, Integer> coinValue = new HashMap<>();
+        coinValue.put(DIME,10);
+        VendingMachine vendingMachine = new VendingMachine(0, coinValue);
         vendingMachine.insertCoin(DIME);
         vendingMachine.insertCoin(DIME);
         assertEquals("$0.2", vendingMachine.display());
@@ -54,6 +62,14 @@ public class VendingMachineTest {
     @Test
     public void acceptOtherValidCoin() {
         assertTrue(vendingMachine.isValid(NICKEL));
+    }
+
+    @Test
+    public void coinValueHash() {
+        Map<Integer, Integer> coinValue = new HashMap<>();
+        coinValue.put(DIME,10);
+        VendingMachine vendingMachine = new VendingMachine(0, coinValue);
+        assertEquals(10, vendingMachine.insertCoin(DIME));
     }
 
 }

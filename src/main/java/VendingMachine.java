@@ -12,9 +12,6 @@ public class VendingMachine {
     public VendingMachine(int sum, Map<Integer, Integer> coinValue) {
         this.sum = sum;
         this.coinValue = coinValue;
-
-        coinValue.put(DIME,10);
-        coinValue.put(NICKEL,5);
     }
 
     public boolean isValid(int weight) {
@@ -25,7 +22,7 @@ public class VendingMachine {
         if (isValid(coinWeight)) {
             sum += coinValue.get(coinWeight);
         }
-        return coinValue.getOrDefault(coinWeight,0);
+        return coinValue.getOrDefault(coinWeight, 0);
     }
 
     public String display() {
@@ -33,4 +30,6 @@ public class VendingMachine {
             return "INSERT COIN";
         else return "$" + (double) sum / 100;
     }
+
+
 }
