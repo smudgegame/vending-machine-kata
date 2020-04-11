@@ -11,8 +11,10 @@ public class VendingMachineTest {
 
     private static final int DIME = 1;
     private static final int PENNY = 2;
+    private static final int NICKEL = 3;
     private static Coin dime = new Coin(DIME);
     private static Coin penny = new Coin(PENNY);
+    private static Coin nickel = new Coin(NICKEL);
     private static VendingMachine vendingMachine;
     private static CoinReturn coinReturn;
 
@@ -55,6 +57,11 @@ public class VendingMachineTest {
     public void invalidCoinToReturn() {
         vendingMachine.insertCoin(penny);
         assertEquals(1, coinReturn.amountOf(penny));
+    }
+
+    @Test
+    public void nicklesAreValid() {
+        assertTrue(vendingMachine.isValid(nickel));
     }
 
 }
