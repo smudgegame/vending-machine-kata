@@ -34,7 +34,7 @@ public class VendingMachineTest {
         assertEquals(10, vendingMachine.getValue(dime));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void coinValueIfValid() {
         assertEquals(0, vendingMachine.getValue(penny));
     }

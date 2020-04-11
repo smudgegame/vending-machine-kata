@@ -16,7 +16,7 @@ public class VendingMachine {
 
     public int getValue(Coin coin) {
         if (isValid(coin)) return 10;
-        return 0;
+        throw new IllegalArgumentException();
     }
 
     public String display() {
@@ -25,8 +25,8 @@ public class VendingMachine {
     }
 
     public void insertCoin(Coin coin) {
-        sum += getValue(coin);
-        if (getValue(coin) == 0) coinReturn.toReturn(coin);
+        if (!isValid(coin)) coinReturn.toReturn(coin);
+        else sum += getValue(coin);
     }
 
     public void reset() {
