@@ -11,7 +11,7 @@ public class VendingMachine {
     }
 
     public boolean isValid(Coin coin) {
-        return coin.getWeight() == 1 || coin.getWeight() == 3;
+        return coin.getWeight() == 1 || coin.getWeight() == 3 || coin.getWeight() == 4;
     }
 
     public int getValue(Coin coin) {
