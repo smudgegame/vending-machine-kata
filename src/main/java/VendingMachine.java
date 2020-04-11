@@ -3,9 +3,11 @@ import java.util.Map;
 public class VendingMachine {
 
     private int sum;
+    private CoinReturn coinReturn;
 
-    public VendingMachine(int sum) {
+    public VendingMachine(int sum, CoinReturn coinReturn) {
         this.sum = sum;
+        this.coinReturn = coinReturn;
     }
 
     public boolean isValid(Coin coin) {
@@ -14,7 +16,11 @@ public class VendingMachine {
 
     public int getValue(Coin coin) {
         if (isValid(coin)) return 10;
-        else throw new IllegalArgumentException();
+        else {
+            coinReturn.toReturn(coin);
+            return 0;
+        }
+
     }
 
     public String display() {
