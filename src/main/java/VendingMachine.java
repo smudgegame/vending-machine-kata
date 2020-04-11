@@ -16,11 +16,7 @@ public class VendingMachine {
 
     public int getValue(Coin coin) {
         if (isValid(coin)) return 10;
-        else {
-            coinReturn.toReturn(coin);
-            return 0;
-        }
-
+        return 0;
     }
 
     public String display() {
@@ -30,5 +26,10 @@ public class VendingMachine {
 
     public void insertCoin(Coin coin) {
         sum += getValue(coin);
+        if (getValue(coin) == 0) coinReturn.toReturn(coin);
+    }
+
+    public void reset() {
+        sum = 0;
     }
 }

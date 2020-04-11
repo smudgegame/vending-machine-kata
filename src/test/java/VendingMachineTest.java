@@ -1,3 +1,4 @@
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -10,58 +11,48 @@ public class VendingMachineTest {
 
     private static final int DIME = 1;
     private static final int PENNY = 2;
+    private static Coin dime = new Coin(DIME);
+    private static Coin penny = new Coin(PENNY);
+    private static VendingMachine vendingMachine;
+    private static CoinReturn coinReturn;
+
+    @BeforeClass
+    public static void setUp() {
+
+        Map<Integer, Integer> coinCount = new HashMap<>();
+        coinReturn = new CoinReturn(coinCount);
+        vendingMachine = new VendingMachine(0, coinReturn);
+    }
 
     @Test
     public void validCoin() {
-        Coin coin = new Coin(DIME);
-        Map<Integer, Integer> coinCount = new HashMap<>();
-        CoinReturn coinReturn = new CoinReturn(coinCount);
-        VendingMachine vendingMachine = new VendingMachine(0, coinReturn);
-        assertTrue(vendingMachine.isValid(coin));
+        assertTrue(vendingMachine.isValid(dime));
     }
 
     @Test
     public void coinValue() {
-        Coin coin = new Coin(DIME);
-        Map<Integer, Integer> coinCount = new HashMap<>();
-        CoinReturn coinReturn = new CoinReturn(coinCount);
-        VendingMachine vendingMachine = new VendingMachine(0, coinReturn);
-        assertEquals(10, vendingMachine.getValue(coin));
+        assertEquals(10, vendingMachine.getValue(dime));
     }
 
     @Test
     public void coinValueIfValid() {
-        Coin coin = new Coin(PENNY);
-        Map<Integer, Integer> coinCount = new HashMap<>();
-        CoinReturn coinReturn = new CoinReturn(coinCount);
-        VendingMachine vendingMachine = new VendingMachine(0, coinReturn);
-        assertEquals(0, vendingMachine.getValue(coin));
+        assertEquals(0, vendingMachine.getValue(penny));
     }
 
     @Test
     public void insertCoinDisplay() {
-        Map<Integer, Integer> coinCount = new HashMap<>();
-        CoinReturn coinReturn = new CoinReturn(coinCount);
-        VendingMachine vendingMachine = new VendingMachine(0, coinReturn);
+        vendingMachine.reset();
         assertEquals("INSERT COIN", vendingMachine.display());
     }
 
     @Test
     public void insertCoin() {
-        Coin dime = new Coin(DIME);
-        Map<Integer, Integer> coinCount = new HashMap<>();
-        CoinReturn coinReturn = new CoinReturn(coinCount);
-        VendingMachine vendingMachine = new VendingMachine(0, coinReturn);
         vendingMachine.insertCoin(dime);
         assertEquals("$0.1", vendingMachine.display());
     }
 
     @Test
     public void invalidCoinToReturn() {
-        Coin penny = new Coin(PENNY);
-        Map<Integer, Integer> coinCount = new HashMap<>();
-        CoinReturn coinReturn = new CoinReturn(coinCount);
-        VendingMachine vendingMachine = new VendingMachine(0, coinReturn);
         vendingMachine.insertCoin(penny);
         assertEquals(1, coinReturn.amountOf(penny));
     }
