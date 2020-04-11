@@ -19,4 +19,11 @@ public class VendingMachineTest {
         assertEquals(10, vendingMachine.getValue(coin));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void coinValueIfValid(){
+        Coin coin = new Coin(2);
+        VendingMachine vendingMachine = new VendingMachine();
+        vendingMachine.getValue(coin);
+    }
+
 }

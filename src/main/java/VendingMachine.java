@@ -7,6 +7,7 @@ public class VendingMachine {
     }
 
     public int getValue(Coin coin) {
-        return 10;
+        if(isValid(coin)) return 10;
+        else throw new IllegalArgumentException();
     }
 }
