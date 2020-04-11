@@ -26,4 +26,10 @@ public class VendingMachineTest {
         vendingMachine.getValue(coin);
     }
 
+    @Test
+    public void insertCoinDisplay(){
+        VendingMachine vendingMachine = new VendingMachine();
+        assertEquals("INSERT COIN", vendingMachine.display());
+    }
+
 }

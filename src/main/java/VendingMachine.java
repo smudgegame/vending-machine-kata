@@ -10,4 +10,8 @@ public class VendingMachine {
         if(isValid(coin)) return 10;
         else throw new IllegalArgumentException();
     }
+
+    public String display() {
+        return "INSERT COIN";
+    }
 }
