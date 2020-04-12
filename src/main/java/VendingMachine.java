@@ -1,21 +1,13 @@
-import java.util.Map;
-
 public class VendingMachine {
 
     private int sum;
     private CoinReturn coinReturn;
-    private WeightToValue weightToValue;
+    private WeightTo weightTo;
 
-    public VendingMachine(int sum, CoinReturn coinReturn, WeightToValue weightToValue) {
+    public VendingMachine(int sum, CoinReturn coinReturn, WeightTo weightTo) {
         this.sum = sum;
         this.coinReturn = coinReturn;
-        this.weightToValue = weightToValue;
-    }
-
-
-    public int getValue(Coin coin) {
-        if (weightToValue.isValid(coin)) return weightToValue.get(coin);
-        throw new IllegalArgumentException();
+        this.weightTo = weightTo;
     }
 
     public String display() {
@@ -24,8 +16,8 @@ public class VendingMachine {
     }
 
     public void insertCoin(Coin coin) {
-        if (!weightToValue.isValid(coin)) coinReturn.toReturn(coin);
-        else sum += getValue(coin);
+        if (!weightTo.isValid(coin)) coinReturn.toReturn(coin);
+        else sum += weightTo.value(coin);
     }
 
     public void reset() {

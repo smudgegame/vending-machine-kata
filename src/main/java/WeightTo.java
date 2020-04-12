@@ -1,6 +1,6 @@
 import java.util.Map;
 
-public class WeightToValue {
+public class WeightTo {
 
     private static final int DIME_VALUE = 10;
     private static final int NICKEL_VALUE = 5;
@@ -10,7 +10,7 @@ public class WeightToValue {
     private static final int QUARTER_WEIGHT = 4;
     private Map<Integer, Integer> valueMap;
 
-    public WeightToValue(Map<Integer, Integer> valueMap) {
+    public WeightTo(Map<Integer, Integer> valueMap) {
         this.valueMap = valueMap;
         valueMap.put(DIME_WEIGHT, DIME_VALUE);
         valueMap.put(NICKEL_WEIGHT, NICKEL_VALUE);
@@ -21,7 +21,8 @@ public class WeightToValue {
         return valueMap.containsKey(coin.getWeight());
     }
 
-    public int get(Coin coin) {
-        return valueMap.getOrDefault(coin.getWeight(), 0);
+    public int value(Coin coin) {
+        if(!isValid(coin)) throw new IllegalArgumentException();
+        return valueMap.get(coin.getWeight());
     }
 }
