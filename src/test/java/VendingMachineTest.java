@@ -22,10 +22,11 @@ public class VendingMachineTest {
 
     @BeforeClass
     public static void setUp() {
-
         Map<Integer, Integer> coinCount = new HashMap<>();
+        Map<Integer, Integer> valueMap = new HashMap<>();
+        WeightToValue weightToValue = new WeightToValue(valueMap);
         coinReturn = new CoinReturn(coinCount);
-        vendingMachine = new VendingMachine(0, coinReturn);
+        vendingMachine = new VendingMachine(0, coinReturn, weightToValue);
     }
 
     @Test

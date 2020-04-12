@@ -4,10 +4,12 @@ public class VendingMachine {
 
     private int sum;
     private CoinReturn coinReturn;
+    private WeightToValue weightToValue;
 
-    public VendingMachine(int sum, CoinReturn coinReturn) {
+    public VendingMachine(int sum, CoinReturn coinReturn, WeightToValue weightToValue) {
         this.sum = sum;
         this.coinReturn = coinReturn;
+        this.weightToValue = weightToValue;
     }
 
     public boolean isValid(Coin coin) {
@@ -15,7 +17,7 @@ public class VendingMachine {
     }
 
     public int getValue(Coin coin) {
-        if (isValid(coin)) return 10;
+        if (isValid(coin)) return weightToValue.get(coin);
         throw new IllegalArgumentException();
     }
 
