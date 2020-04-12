@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class WeightToValueTest {
 
@@ -35,5 +36,12 @@ public class WeightToValueTest {
         assertEquals(25, weightToValue.get(coin));
     }
 
+    @Test
+    public void isValidWeight() {
+        Coin coin = new Coin(QUARTER_WEIGHT);
+        Map<Integer, Integer> valueMap = new HashMap<>();
+        WeightToValue weightToValue = new WeightToValue(valueMap);
+        assertTrue(weightToValue.isValid(coin));
+    }
 
 }

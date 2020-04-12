@@ -17,6 +17,10 @@ public class WeightToValue {
         valueMap.put(QUARTER_WEIGHT, QUARTER_VALUE);
     }
 
+    public boolean isValid(Coin coin) {
+        return valueMap.containsKey(coin.getWeight());
+    }
+
     public int get(Coin coin) {
         return valueMap.getOrDefault(coin.getWeight(), 0);
     }

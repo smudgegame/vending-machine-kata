@@ -19,19 +19,20 @@ public class VendingMachineTest {
     private static Coin quarter = new Coin(QUARTER);
     private static VendingMachine vendingMachine;
     private static CoinReturn coinReturn;
+    private static WeightToValue weightToValue;
 
     @BeforeClass
     public static void setUp() {
         Map<Integer, Integer> coinCount = new HashMap<>();
         Map<Integer, Integer> valueMap = new HashMap<>();
-        WeightToValue weightToValue = new WeightToValue(valueMap);
+        weightToValue = new WeightToValue(valueMap);
         coinReturn = new CoinReturn(coinCount);
         vendingMachine = new VendingMachine(0, coinReturn, weightToValue);
     }
 
     @Test
     public void validCoin() {
-        assertTrue(vendingMachine.isValid(dime));
+        assertTrue(weightToValue.isValid(dime));
     }
 
     @Test
@@ -64,12 +65,12 @@ public class VendingMachineTest {
 
     @Test
     public void nicklesAreValid() {
-        assertTrue(vendingMachine.isValid(nickel));
+        assertTrue(weightToValue.isValid(nickel));
     }
 
     @Test
     public void quartersAreValid() {
-        assertTrue(vendingMachine.isValid(quarter));
+        assertTrue(weightToValue.isValid(quarter));
     }
 
 }

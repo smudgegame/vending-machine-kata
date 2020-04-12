@@ -12,12 +12,9 @@ public class VendingMachine {
         this.weightToValue = weightToValue;
     }
 
-    public boolean isValid(Coin coin) {
-        return coin.getWeight() == 1 || coin.getWeight() == 3 || coin.getWeight() == 4;
-    }
 
     public int getValue(Coin coin) {
-        if (isValid(coin)) return weightToValue.get(coin);
+        if (weightToValue.isValid(coin)) return weightToValue.get(coin);
         throw new IllegalArgumentException();
     }
 
@@ -27,7 +24,7 @@ public class VendingMachine {
     }
 
     public void insertCoin(Coin coin) {
-        if (!isValid(coin)) coinReturn.toReturn(coin);
+        if (!weightToValue.isValid(coin)) coinReturn.toReturn(coin);
         else sum += getValue(coin);
     }
 
