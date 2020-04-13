@@ -9,19 +9,17 @@ public class CoinReturnTest {
 
     @Test
     public void inReturn() {
-        Coin coin = new Coin(1);
         Map<Integer, Integer> coinCount = new HashMap<>();
         CoinReturn coinReturn = new CoinReturn(coinCount);
-        assertEquals(0, coinReturn.amountOf(coin));
+        assertEquals(0, coinReturn.amountOf(1));
     }
 
     @Test
     public void toReturn() {
-        Coin coin = new Coin(1);
         Map<Integer, Integer> coinCount = new HashMap<>();
         CoinReturn coinReturn = new CoinReturn(coinCount);
-        coinReturn.toReturn(coin);
-        assertEquals(1, coinReturn.amountOf(coin));
+        coinReturn.toReturn(1);
+        assertEquals(1, coinReturn.amountOf(1));
     }
 
 }

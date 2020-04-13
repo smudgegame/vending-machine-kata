@@ -13,10 +13,6 @@ public class VendingMachineTest {
     private static final int PENNY = 2;
     private static final int NICKEL = 3;
     private static final int QUARTER = 4;
-    private static Coin dime = new Coin(DIME);
-    private static Coin penny = new Coin(PENNY);
-    private static Coin nickel = new Coin(NICKEL);
-    private static Coin quarter = new Coin(QUARTER);
     private static VendingMachine vendingMachine;
     private static CoinReturn coinReturn;
     private static WeightTo weightTo;
@@ -32,17 +28,17 @@ public class VendingMachineTest {
 
     @Test
     public void validCoin() {
-        assertTrue(weightTo.isValid(dime));
+        assertTrue(weightTo.isValid(DIME));
     }
 
     @Test
     public void coinValue() {
-        assertEquals(10, weightTo.value(dime));
+        assertEquals(10, weightTo.value(DIME));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void coinValueIfValid() {
-        weightTo.value(penny);
+        weightTo.value(PENNY);
     }
 
     @Test
@@ -53,24 +49,24 @@ public class VendingMachineTest {
 
     @Test
     public void insertCoin() {
-        vendingMachine.insertCoin(dime);
+        vendingMachine.insertCoin(DIME);
         assertEquals("$0.1", vendingMachine.display());
     }
 
     @Test
     public void invalidCoinToReturn() {
-        vendingMachine.insertCoin(penny);
-        assertEquals(1, coinReturn.amountOf(penny));
+        vendingMachine.insertCoin(PENNY);
+        assertEquals(1, coinReturn.amountOf(PENNY));
     }
 
     @Test
     public void nicklesAreValid() {
-        assertTrue(weightTo.isValid(nickel));
+        assertTrue(weightTo.isValid(NICKEL));
     }
 
     @Test
     public void quartersAreValid() {
-        assertTrue(weightTo.isValid(quarter));
+        assertTrue(weightTo.isValid(QUARTER));
     }
 
 }

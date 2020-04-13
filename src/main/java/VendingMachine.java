@@ -15,9 +15,9 @@ public class VendingMachine {
         return "$" + (double) sum / 100;
     }
 
-    public void insertCoin(Coin coin) {
-        if (!weightTo.isValid(coin)) coinReturn.toReturn(coin);
-        else sum += weightTo.value(coin);
+    public void insertCoin(int weight) {
+        if (!weightTo.isValid(weight)) coinReturn.toReturn(weight);
+        else sum += weightTo.value(weight);
     }
 
     public void reset() {

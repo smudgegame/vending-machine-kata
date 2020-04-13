@@ -17,12 +17,12 @@ public class WeightTo {
         valueMap.put(QUARTER_WEIGHT, QUARTER_VALUE);
     }
 
-    public boolean isValid(Coin coin) {
-        return valueMap.containsKey(coin.getWeight());
+    public boolean isValid(int weight) {
+        return valueMap.containsKey(weight);
     }
 
-    public int value(Coin coin) {
-        if(!isValid(coin)) throw new IllegalArgumentException();
-        return valueMap.get(coin.getWeight());
+    public int value(int weight) {
+        if (!isValid(weight)) throw new IllegalArgumentException();
+        return valueMap.get(weight);
     }
 }

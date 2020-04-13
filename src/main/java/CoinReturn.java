@@ -8,12 +8,12 @@ public class CoinReturn {
         this.coinCount = coinCount;
     }
 
-    public int amountOf(Coin coin) {
-        return coinCount.getOrDefault(coin.getWeight(), 0);
+    public int amountOf(int weight) {
+        return coinCount.getOrDefault(weight, 0);
     }
 
-    public void toReturn(Coin coin) {
-        int currentCount = coinCount.getOrDefault(coin.getWeight(), 0);
-        coinCount.put(coin.getWeight(), currentCount + 1);
+    public void toReturn(int weight) {
+        int currentCount = coinCount.getOrDefault(weight, 0);
+        coinCount.put(weight, currentCount + 1);
     }
 }

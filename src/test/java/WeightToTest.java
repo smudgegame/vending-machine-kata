@@ -14,34 +14,30 @@ public class WeightToTest {
 
     @Test
     public void weightToValue() {
-        Coin coin = new Coin(DIME_WEIGHT);
         Map<Integer, Integer> valueMap = new HashMap<>();
         WeightTo weightTo = new WeightTo(valueMap);
-        assertEquals(10, weightTo.value(coin));
+        assertEquals(10, weightTo.value(DIME_WEIGHT));
     }
 
     @Test
     public void newCoinValue() {
-        Coin coin = new Coin(NICKEL_WEIGHT);
         Map<Integer, Integer> valueMap = new HashMap<>();
         WeightTo weightTo = new WeightTo(valueMap);
-        assertEquals(5, weightTo.value(coin));
+        assertEquals(5, weightTo.value(NICKEL_WEIGHT));
     }
 
     @Test
     public void quarterValue() {
-        Coin coin = new Coin(QUARTER_WEIGHT);
         Map<Integer, Integer> valueMap = new HashMap<>();
         WeightTo weightTo = new WeightTo(valueMap);
-        assertEquals(25, weightTo.value(coin));
+        assertEquals(25, weightTo.value(QUARTER_WEIGHT));
     }
 
     @Test
     public void isValidWeight() {
-        Coin coin = new Coin(QUARTER_WEIGHT);
         Map<Integer, Integer> valueMap = new HashMap<>();
         WeightTo weightTo = new WeightTo(valueMap);
-        assertTrue(weightTo.isValid(coin));
+        assertTrue(weightTo.isValid(QUARTER_WEIGHT));
     }
 
 }
