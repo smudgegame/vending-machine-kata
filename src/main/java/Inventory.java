@@ -20,4 +20,8 @@ public class Inventory {
     public int getPrice(String product) {
         return productPrice.get(product.toLowerCase());
     }
+
+    public void setProduct(String product) {
+        currentProduct = product;
+    }
 }
