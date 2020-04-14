@@ -18,7 +18,7 @@ public class Inventory {
     }
 
     public int getPrice() {
-        return productPrice.get(currentProduct);
+        return productPrice.getOrDefault(currentProduct,0);
     }
 
     public void setProduct(String product) {

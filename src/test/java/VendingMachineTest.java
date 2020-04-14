@@ -82,4 +82,11 @@ public class VendingMachineTest {
         assertEquals("cola", inventory.getProduct());
     }
 
+    @Test
+    public void notEnoughMoney() {
+        vendingMachine.reset();
+        vendingMachine.select("cola");
+        assertEquals("PRICE", vendingMachine.display());
+    }
+
 }

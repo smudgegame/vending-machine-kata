@@ -12,7 +12,7 @@ public class DispenserTest {
         Map<Integer, Integer> coinCount = new HashMap<>();
         inDispenser.put("soda", 1);
         Dispenser dispenser = new Dispenser(inDispenser, coinCount);
-        assertEquals(1, dispenser.amountOf("soda"));
+        assertEquals(1, dispenser.amountOfProduct("soda"));
     }
 
     @Test

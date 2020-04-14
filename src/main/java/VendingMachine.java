@@ -14,7 +14,10 @@ public class VendingMachine {
     }
 
     public String display() {
-        if (sum == 0) return "INSERT COIN";
+        if (sum == 0) {
+            if (inventory.getPrice() > sum) return "PRICE";
+            return "INSERT COIN";
+        }
         return "$" + (double) sum / 100;
     }
 
@@ -29,5 +32,6 @@ public class VendingMachine {
 
     public void reset() {
         sum = 0;
+        inventory.resetSelection();
     }
 }

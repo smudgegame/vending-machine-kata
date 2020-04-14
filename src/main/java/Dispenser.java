@@ -10,7 +10,7 @@ public class Dispenser {
         this.coinCount = coinCount;
     }
 
-    public int amountOf(String product) {
+    public int amountOfProduct(String product) {
         return inDispenser.getOrDefault(product, 0);
     }
 
