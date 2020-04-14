@@ -25,7 +25,7 @@ public class InventoryTest {
 
     @Test
     public void getProduct() {
-        inventory.reset();
+        inventory.resetSelection();
         assertEquals("", inventory.getProduct());
     }
 

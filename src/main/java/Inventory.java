@@ -25,7 +25,7 @@ public class Inventory {
         currentProduct = product.toLowerCase();
     }
 
-    public void reset() {
+    public void resetSelection() {
         currentProduct = "";
     }
 }

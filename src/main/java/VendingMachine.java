@@ -3,11 +3,14 @@ public class VendingMachine {
     private int sum;
     private CoinReturn coinReturn;
     private WeightTo weightTo;
+    private Inventory inventory;
 
-    public VendingMachine(int sum, CoinReturn coinReturn, WeightTo weightTo) {
+
+    public VendingMachine(int sum, CoinReturn coinReturn, WeightTo weightTo, Inventory inventory) {
         this.sum = sum;
         this.coinReturn = coinReturn;
         this.weightTo = weightTo;
+        this.inventory = inventory;
     }
 
     public String display() {
@@ -18,6 +21,10 @@ public class VendingMachine {
     public void insertCoin(int weight) {
         if (!weightTo.isValid(weight)) coinReturn.toReturn(weight);
         else sum += weightTo.value(weight);
+    }
+
+    public void select(String product) {
+        inventory.setProduct(product);
     }
 
     public void reset() {

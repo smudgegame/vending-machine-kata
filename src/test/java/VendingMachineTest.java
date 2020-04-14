@@ -16,14 +16,18 @@ public class VendingMachineTest {
     private static VendingMachine vendingMachine;
     private static CoinReturn coinReturn;
     private static WeightTo weightTo;
+    private static Inventory inventory;
 
     @BeforeClass
     public static void setUp() {
+        String product = "";
         Map<Integer, Integer> coinCount = new HashMap<>();
         Map<Integer, Integer> valueMap = new HashMap<>();
+        Map<String, Integer> productPrice = new HashMap<>();
         weightTo = new WeightTo(valueMap);
         coinReturn = new CoinReturn(coinCount);
-        vendingMachine = new VendingMachine(0, coinReturn, weightTo);
+        inventory = new Inventory(productPrice, product);
+        vendingMachine = new VendingMachine(0, coinReturn, weightTo, inventory);
     }
 
     @Test
@@ -67,6 +71,12 @@ public class VendingMachineTest {
     @Test
     public void quartersAreValid() {
         assertTrue(weightTo.isValid(QUARTER));
+    }
+
+    @Test
+    public void selectProduct() {
+        vendingMachine.select("cola");
+        assertEquals("cola", inventory.getProduct());
     }
 
 }
