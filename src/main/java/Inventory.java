@@ -10,18 +10,22 @@ public class Inventory {
     public Inventory(Map<String, Integer> productPrice, String currentProduct) {
         this.productPrice = productPrice;
         this.currentProduct = currentProduct;
-        productPrice.put("cola",COLA_PRICE);
+        productPrice.put("cola", COLA_PRICE);
     }
 
     public String getProduct() {
         return currentProduct;
     }
 
-    public int getPrice(String product) {
-        return productPrice.get(product.toLowerCase());
+    public int getPrice() {
+        return productPrice.get(currentProduct);
     }
 
     public void setProduct(String product) {
-        currentProduct = product;
+        currentProduct = product.toLowerCase();
+    }
+
+    public void reset() {
+        currentProduct = "";
     }
 }

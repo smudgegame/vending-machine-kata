@@ -1,3 +1,4 @@
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -7,29 +8,31 @@ import static org.junit.Assert.assertEquals;
 
 public class InventoryTest {
 
-    @Test
-    public void productPrice() {
+    private static Inventory inventory;
+
+    @BeforeClass
+    public static void setUp() {
         String product = "";
         Map<String, Integer> productPrice = new HashMap<>();
-        Inventory inventory = new Inventory(productPrice, product);
-        assertEquals(100, inventory.getPrice("cola"));
-    }
-
-    @Test
-    public void getProduct() {
-        String currentProduct = "cola";
-        Map<String, Integer> productPrice = new HashMap<>();
-        Inventory inventory = new Inventory(productPrice, currentProduct);
-        assertEquals("cola", inventory.getProduct());
+        inventory = new Inventory(productPrice, product);
     }
 
     @Test
     public void setProduct() {
-        String product = "";
-        Map<String, Integer> productPrice = new HashMap<>();
-        Inventory inventory = new Inventory(productPrice, product);
         inventory.setProduct("cola");
         assertEquals("cola", inventory.getProduct());
+    }
+
+    @Test
+    public void getProduct() {
+        inventory.reset();
+        assertEquals("", inventory.getProduct());
+    }
+
+    @Test
+    public void productPrice() {
+        inventory.setProduct("cola");
+        assertEquals(100, inventory.getPrice());
     }
 
 }
