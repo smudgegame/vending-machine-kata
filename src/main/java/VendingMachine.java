@@ -1,14 +1,14 @@
 public class VendingMachine {
 
     private int sum;
-    private CoinReturn coinReturn;
+    private Dispenser dispenser;
     private WeightTo weightTo;
     private Inventory inventory;
 
 
-    public VendingMachine(int sum, CoinReturn coinReturn, WeightTo weightTo, Inventory inventory) {
+    public VendingMachine(int sum, Dispenser dispenser, WeightTo weightTo, Inventory inventory) {
         this.sum = sum;
-        this.coinReturn = coinReturn;
+        this.dispenser = dispenser;
         this.weightTo = weightTo;
         this.inventory = inventory;
     }
@@ -19,7 +19,7 @@ public class VendingMachine {
     }
 
     public void insertCoin(int weight) {
-        if (!weightTo.isValid(weight)) coinReturn.toReturn(weight);
+        if (!weightTo.isValid(weight)) dispenser.toCoinReturn(weight);
         else sum += weightTo.value(weight);
     }
 

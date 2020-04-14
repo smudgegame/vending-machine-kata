@@ -14,20 +14,23 @@ public class VendingMachineTest {
     private static final int NICKEL = 3;
     private static final int QUARTER = 4;
     private static VendingMachine vendingMachine;
-    private static CoinReturn coinReturn;
+    private static Dispenser dispenser;
     private static WeightTo weightTo;
     private static Inventory inventory;
 
     @BeforeClass
     public static void setUp() {
-        String product = "";
-        Map<Integer, Integer> coinCount = new HashMap<>();
         Map<Integer, Integer> valueMap = new HashMap<>();
-        Map<String, Integer> productPrice = new HashMap<>();
         weightTo = new WeightTo(valueMap);
-        coinReturn = new CoinReturn(coinCount);
+
+        Map<String, Integer> inDispenser = new HashMap<>();
+        Map<Integer, Integer> coinCount = new HashMap<>();
+        dispenser = new Dispenser(inDispenser, coinCount);
+
+        String product = "";
+        Map<String, Integer> productPrice = new HashMap<>();
         inventory = new Inventory(productPrice, product);
-        vendingMachine = new VendingMachine(0, coinReturn, weightTo, inventory);
+        vendingMachine = new VendingMachine(0, dispenser, weightTo, inventory);
     }
 
     @Test
@@ -60,7 +63,7 @@ public class VendingMachineTest {
     @Test
     public void invalidCoinToReturn() {
         vendingMachine.insertCoin(PENNY);
-        assertEquals(1, coinReturn.amountOf(PENNY));
+        assertEquals(1, dispenser.inCoinReturn(PENNY));
     }
 
     @Test
