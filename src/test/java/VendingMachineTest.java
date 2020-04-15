@@ -104,4 +104,14 @@ public class VendingMachineTest {
         assertEquals("INSERT COIN", vendingMachine.display());
     }
 
+    @Test
+    public void dispenseAfterPurchase() {
+        vendingMachine.reset();
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.select("cola");
+        assertEquals("cola", dispenser.inDispenser());
+    }
 }

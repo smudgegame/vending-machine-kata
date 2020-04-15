@@ -22,6 +22,7 @@ public class VendingMachine {
         } else {
             if (sum >= inventory.getPrice()) {
                 display = "THANK YOU";
+                dispenser.dispense(inventory.getProduct());
                 reset();
             } else {
                 display = "PRICE";
