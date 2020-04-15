@@ -36,9 +36,15 @@ public class InventoryTest {
     }
 
     @Test
-    public void chipsProduct(){
+    public void chipsProduct() {
         inventory.setProduct("chips");
-        assertEquals(50,inventory.getPrice());
+        assertEquals(50, inventory.getPrice());
+    }
+
+    @Test
+    public void candyProduct() {
+        inventory.setProduct("candy");
+        assertEquals(65, inventory.getPrice());
     }
 
 }
