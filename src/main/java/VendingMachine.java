@@ -1,40 +1,22 @@
 public class VendingMachine {
 
-    private int sum;
-    private String display;
+    private Calculate calculate;
     private Dispenser dispenser;
-    private WeightTo weightTo;
     private Inventory inventory;
 
-
-    public VendingMachine(int sum, String display, Dispenser dispenser, WeightTo weightTo, Inventory inventory) {
-        this.sum = sum;
-        this.display = display;
+    public VendingMachine(Calculate calculate, Dispenser dispenser, Inventory inventory) {
+        this.calculate = calculate;
         this.dispenser = dispenser;
-        this.weightTo = weightTo;
         this.inventory = inventory;
     }
 
     public String display() {
-        if (inventory.getProduct().equals("")) {
-            if (sum == 0) display = "INSERT COIN";
-            else display = "$" + (double) sum / 100;
-        } else {
-            if (sum >= inventory.getPrice()) {
-                display = "THANK YOU";
-                dispenser.dispense(inventory.getProduct());
-                reset();
-            } else {
-                display = "PRICE";
-                inventory.resetSelection();
-            }
-        }
-        return display;
+        return calculate.display();
     }
 
     public void insertCoin(int weight) {
-        if (!weightTo.isValid(weight)) dispenser.toCoinReturn(weight);
-        else sum += weightTo.value(weight);
+        if (!calculate.isValid(weight)) dispenser.toCoinReturn(weight);
+        else calculate.addToSum(weight);
     }
 
     public void select(String product) {
@@ -42,7 +24,7 @@ public class VendingMachine {
     }
 
     public void reset() {
-        sum = 0;
+        calculate.resetSum();
         inventory.resetSelection();
     }
 }

@@ -15,38 +15,38 @@ public class VendingMachineTest {
     private static final int QUARTER = 4;
     private static VendingMachine vendingMachine;
     private static Dispenser dispenser;
-    private static WeightTo weightTo;
+    private static Calculate calculate;
     private static Inventory inventory;
 
     @BeforeClass
     public static void setUp() {
         String product = "";
-        String display = "";
 
         Map<Integer, Integer> valueMap = new HashMap<>();
-        weightTo = new WeightTo(valueMap);
 
         Map<Integer, Integer> coinCount = new HashMap<>();
         dispenser = new Dispenser(product, coinCount);
 
         Map<String, Integer> productPrice = new HashMap<>();
         inventory = new Inventory(productPrice, product);
-        vendingMachine = new VendingMachine(0, display, dispenser, weightTo, inventory);
+
+        calculate = new Calculate(0, valueMap, inventory, dispenser);
+        vendingMachine = new VendingMachine( calculate, dispenser, inventory);
     }
 
     @Test
     public void validCoin() {
-        assertTrue(weightTo.isValid(DIME));
+        assertTrue(calculate.isValid(DIME));
     }
 
     @Test
     public void coinValue() {
-        assertEquals(10, weightTo.value(DIME));
+        assertEquals(10, calculate.value(DIME));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void coinValueIfValid() {
-        weightTo.value(PENNY);
+        calculate.value(PENNY);
     }
 
     @Test
@@ -70,12 +70,12 @@ public class VendingMachineTest {
 
     @Test
     public void nicklesAreValid() {
-        assertTrue(weightTo.isValid(NICKEL));
+        assertTrue(calculate.isValid(NICKEL));
     }
 
     @Test
     public void quartersAreValid() {
-        assertTrue(weightTo.isValid(QUARTER));
+        assertTrue(calculate.isValid(QUARTER));
     }
 
     @Test
