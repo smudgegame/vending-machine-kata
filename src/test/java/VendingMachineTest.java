@@ -20,14 +20,16 @@ public class VendingMachineTest {
 
     @BeforeClass
     public static void setUp() {
+        String product = "";
+
         Map<Integer, Integer> valueMap = new HashMap<>();
         weightTo = new WeightTo(valueMap);
 
-        Map<String, Integer> inDispenser = new HashMap<>();
-        Map<Integer, Integer> coinCount = new HashMap<>();
-        dispenser = new Dispenser(inDispenser, coinCount);
 
-        String product = "";
+        Map<Integer, Integer> coinCount = new HashMap<>();
+        dispenser = new Dispenser(product, coinCount);
+
+
         Map<String, Integer> productPrice = new HashMap<>();
         inventory = new Inventory(productPrice, product);
         vendingMachine = new VendingMachine(0, dispenser, weightTo, inventory);
@@ -56,6 +58,7 @@ public class VendingMachineTest {
 
     @Test
     public void insertCoin() {
+        vendingMachine.reset();
         vendingMachine.insertCoin(DIME);
         assertEquals("$0.1", vendingMachine.display());
     }

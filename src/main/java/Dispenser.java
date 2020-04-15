@@ -2,16 +2,20 @@ import java.util.Map;
 
 public class Dispenser {
 
-    private Map<String, Integer> inDispenser;
+    private String product;
     private Map<Integer, Integer> coinCount;
 
-    public Dispenser(Map<String, Integer> inDispenser, Map<Integer, Integer> coinCount) {
-        this.inDispenser = inDispenser;
+    public Dispenser(String product, Map<Integer, Integer> coinCount) {
+        this.product = product;
         this.coinCount = coinCount;
     }
 
-    public int amountOfProduct(String product) {
-        return inDispenser.getOrDefault(product, 0);
+    public String inDispenser() {
+        return product;
+    }
+
+    public void dispense(String product) {
+        this.product = product;
     }
 
     public int inCoinReturn(int weight) {
