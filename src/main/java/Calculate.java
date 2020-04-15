@@ -52,7 +52,6 @@ public class Calculate {
         } else {
             if (sum >= inventory.getPrice()) {
                 display = "THANK YOU";
-                dispenser.dispense(inventory.getProduct());
                 inventory.resetSelection();
                 sum = 0;
             } else {
@@ -61,5 +60,11 @@ public class Calculate {
             }
         }
         return display;
+    }
+
+    void update(){
+        if (sum >= inventory.getPrice()) {
+            dispenser.dispense(inventory.getProduct());
+        }
     }
 }

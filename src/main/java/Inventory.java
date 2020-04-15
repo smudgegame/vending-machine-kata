@@ -8,7 +8,6 @@ public class Inventory {
     private Map<String, Integer> productPrice;
     private String currentProduct;
 
-
     public Inventory(Map<String, Integer> productPrice, String currentProduct) {
         this.productPrice = productPrice;
         this.currentProduct = currentProduct;

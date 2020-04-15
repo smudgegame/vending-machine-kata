@@ -111,7 +111,7 @@ public class VendingMachineTest {
         vendingMachine.insertCoin(QUARTER);
         vendingMachine.insertCoin(QUARTER);
         vendingMachine.insertCoin(QUARTER);
-        vendingMachine.select("cola");
-        assertEquals("cola", dispenser.inDispenser());
+        vendingMachine.select("candy");
+        assertEquals("candy", dispenser.inDispenser());
     }
 }

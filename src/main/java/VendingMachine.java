@@ -21,6 +21,7 @@ public class VendingMachine {
 
     public void select(String product) {
         inventory.setProduct(product);
+        calculate.update();
     }
 
     public void reset() {
