@@ -3,6 +3,7 @@ import java.util.Map;
 public class Inventory {
 
     private static final int COLA_PRICE = 100;
+    private static final int CHIPS_PRICE = 50;
     private Map<String, Integer> productPrice;
     private String currentProduct;
 
@@ -11,6 +12,7 @@ public class Inventory {
         this.productPrice = productPrice;
         this.currentProduct = currentProduct;
         productPrice.put("cola", COLA_PRICE);
+        productPrice.put("chips", CHIPS_PRICE);
     }
 
     public String getProduct() {

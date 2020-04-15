@@ -35,4 +35,10 @@ public class InventoryTest {
         assertEquals(100, inventory.getPrice());
     }
 
+    @Test
+    public void chipsProduct(){
+        inventory.setProduct("chips");
+        assertEquals(50,inventory.getPrice());
+    }
+
 }
