@@ -8,8 +8,11 @@ public class CoinManager {
         this.coinHolding = coinHolding;
     }
 
-
     public int holding(int weight) {
-        return coinHolding.getOrDefault(weight,0);
+        return coinHolding.getOrDefault(weight, 0);
+    }
+
+    public void receiveCoin(int weight) {
+        coinHolding.put(weight, 1);
     }
 }
