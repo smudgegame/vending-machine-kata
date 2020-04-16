@@ -114,4 +114,5 @@ public class VendingMachineTest {
         vendingMachine.select("candy");
         assertEquals("candy", dispenser.inDispenser());
     }
+
 }

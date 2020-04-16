@@ -26,4 +26,9 @@ public class Dispenser {
         int currentCount = coinCount.getOrDefault(weight, 0);
         coinCount.put(weight, currentCount + 1);
     }
+
+    void collect() {
+        product = "";
+        coinCount.clear();
+    }
 }

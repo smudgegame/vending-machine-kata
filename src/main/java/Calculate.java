@@ -62,9 +62,11 @@ public class Calculate {
         return display;
     }
 
-    void update(){
+    void update() {
         if (sum >= inventory.getPrice()) {
             dispenser.dispense(inventory.getProduct());
         }
     }
+
+
 }
