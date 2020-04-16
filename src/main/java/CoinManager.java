@@ -13,6 +13,7 @@ public class CoinManager {
     }
 
     public void receiveCoin(int weight) {
-        coinHolding.put(weight, 1);
+        int currentCount = coinHolding.getOrDefault(weight, 0);
+        coinHolding.put(weight, currentCount + 1);
     }
 }

@@ -23,4 +23,14 @@ public class CoinManagerTest {
         coinManager.receiveCoin(DIME);
         assertEquals(1, coinManager.holding(DIME));
     }
+
+    @Test
+    public void receiveMultiple() {
+        Map<Integer, Integer> coinHolding = new HashMap<>();
+        CoinManager coinManager = new CoinManager(coinHolding);
+        coinManager.receiveCoin(DIME);
+        coinManager.receiveCoin(DIME);
+        assertEquals(2, coinManager.holding(DIME));
+
+    }
 }
