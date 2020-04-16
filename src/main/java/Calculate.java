@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Calculate {
@@ -17,12 +19,10 @@ public class Calculate {
 
     public Calculate(int sum, Map<Integer, Integer> valueMap, Inventory inventory, Dispenser dispenser) {
         this.sum = sum;
-
         this.valueMap = valueMap;
+        valueMap.put(QUARTER_WEIGHT, QUARTER_VALUE);
         valueMap.put(DIME_WEIGHT, DIME_VALUE);
         valueMap.put(NICKEL_WEIGHT, NICKEL_VALUE);
-        valueMap.put(QUARTER_WEIGHT, QUARTER_VALUE);
-
         this.inventory = inventory;
         this.dispenser = dispenser;
     }
@@ -69,6 +69,21 @@ public class Calculate {
     }
 
     public int credit(int price) {
-        return sum-price;
+        return sum - price;
+    }
+
+    public List<Integer> change() {
+        List<Integer> change = new ArrayList<>();
+        List<Integer> weights = new ArrayList<>();
+        weights.add(4);
+        weights.add(1);
+        weights.add(3);
+        int credit = credit(inventory.getPrice());
+        for (int weight : weights)
+            while (credit >= value(weight)) {
+                credit = credit - value(weight);
+                change.add(weight);
+            }
+        return change;
     }
 }

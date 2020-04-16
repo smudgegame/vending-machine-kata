@@ -1,7 +1,9 @@
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -79,5 +81,16 @@ public class CalculateTest {
         calculate.setSum(100);
         inventory.setProduct("candy");
         assertEquals(35, calculate.credit(inventory.getPrice()));
+    }
+
+    @Test
+    public void makeChange() {
+        calculate.setSum(105);
+        inventory.setProduct("candy");
+        List<Integer> change = new ArrayList<>();
+        change.add(QUARTER);
+        change.add(DIME);
+        change.add(NICKEL);
+        assertEquals(change, calculate.change());
     }
 }
