@@ -9,18 +9,17 @@ import static org.junit.Assert.assertTrue;
 
 public class CalculateTest {
 
-    private static final int DIME_WEIGHT = 1;
-    private static final int NICKEL_WEIGHT = 3;
-    private static final int QUARTER_WEIGHT = 4;
+    private static final int DIME = 1;
+    private static final int PENNY = 2;
+    private static final int NICKEL = 3;
+    private static final int QUARTER = 4;
 
     private static Calculate calculate;
 
     @BeforeClass
     public static void setUp() {
         String product = "";
-
-        Map<Integer, Integer> coinCount = new HashMap<>();
-        Dispenser dispenser = new Dispenser(product, coinCount);
+        Dispenser dispenser = new Dispenser(product);
 
         Map<String, Integer> productPrice = new HashMap<>();
         Inventory inventory = new Inventory(productPrice, product);
@@ -30,22 +29,47 @@ public class CalculateTest {
     }
 
     @Test
+    public void validCoin() {
+        assertTrue(calculate.isValid(DIME));
+    }
+
+    @Test
+    public void coinValue() {
+        assertEquals(10, calculate.value(DIME));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void coinValueIfValid() {
+        calculate.value(PENNY);
+    }
+
+    @Test
+    public void nicklesAreValid() {
+        assertTrue(calculate.isValid(NICKEL));
+    }
+
+    @Test
+    public void quartersAreValid() {
+        assertTrue(calculate.isValid(QUARTER));
+    }
+
+    @Test
     public void weightToValue() {
-        assertEquals(10, calculate.value(DIME_WEIGHT));
+        assertEquals(10, calculate.value(DIME));
     }
 
     @Test
     public void newCoinValue() {
-        assertEquals(5, calculate.value(NICKEL_WEIGHT));
+        assertEquals(5, calculate.value(NICKEL));
     }
 
     @Test
     public void quarterValue() {
-        assertEquals(25, calculate.value(QUARTER_WEIGHT));
+        assertEquals(25, calculate.value(QUARTER));
     }
 
     @Test
     public void isValidWeight() {
-        assertTrue(calculate.isValid(QUARTER_WEIGHT));
+        assertTrue(calculate.isValid(QUARTER));
     }
 }

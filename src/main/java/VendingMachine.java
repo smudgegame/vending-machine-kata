@@ -3,9 +3,11 @@ public class VendingMachine {
     private Calculate calculate;
     private Dispenser dispenser;
     private Inventory inventory;
+    private CoinManager coinManager;
 
-    public VendingMachine(Calculate calculate, Dispenser dispenser, Inventory inventory) {
+    public VendingMachine(Calculate calculate, CoinManager coinManager, Dispenser dispenser, Inventory inventory) {
         this.calculate = calculate;
+        this.coinManager = coinManager;
         this.dispenser = dispenser;
         this.inventory = inventory;
     }
@@ -15,7 +17,7 @@ public class VendingMachine {
     }
 
     public void insertCoin(int weight) {
-        if (!calculate.isValid(weight)) dispenser.toCoinReturn(weight);
+        if (!calculate.isValid(weight)) coinManager.toCoinReturn(weight);
         else calculate.addToSum(weight);
     }
 
@@ -26,7 +28,8 @@ public class VendingMachine {
 
     public void reset() {
         calculate.resetSum();
-        inventory.resetSelection();
+        coinManager.reset();
         dispenser.collect();
+        inventory.resetSelection();
     }
 }

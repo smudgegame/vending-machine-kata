@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class VendingMachineTest {
 
@@ -14,39 +13,29 @@ public class VendingMachineTest {
     private static final int NICKEL = 3;
     private static final int QUARTER = 4;
     private static VendingMachine vendingMachine;
-    private static Dispenser dispenser;
-    private static Calculate calculate;
+
+    private static CoinManager coinManager;
     private static Inventory inventory;
+    private static Dispenser dispenser;
+
 
     @BeforeClass
     public static void setUp() {
         String product = "";
 
-        Map<Integer, Integer> valueMap = new HashMap<>();
+        Map<Integer, Integer> coinHolding = new HashMap<>();
+        Map<Integer, Integer> coinReturn = new HashMap<>();
+        coinManager = new CoinManager(coinHolding, coinReturn);
 
         Map<Integer, Integer> coinCount = new HashMap<>();
-        dispenser = new Dispenser(product, coinCount);
+        dispenser = new Dispenser(product);
 
         Map<String, Integer> productPrice = new HashMap<>();
         inventory = new Inventory(productPrice, product);
 
-        calculate = new Calculate(0, valueMap, inventory, dispenser);
-        vendingMachine = new VendingMachine( calculate, dispenser, inventory);
-    }
-
-    @Test
-    public void validCoin() {
-        assertTrue(calculate.isValid(DIME));
-    }
-
-    @Test
-    public void coinValue() {
-        assertEquals(10, calculate.value(DIME));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void coinValueIfValid() {
-        calculate.value(PENNY);
+        Map<Integer, Integer> valueMap = new HashMap<>();
+        Calculate calculate = new Calculate(0, valueMap, inventory, dispenser);
+        vendingMachine = new VendingMachine(calculate, coinManager, dispenser, inventory);
     }
 
     @Test
@@ -65,18 +54,9 @@ public class VendingMachineTest {
     @Test
     public void invalidCoinToReturn() {
         vendingMachine.insertCoin(PENNY);
-        assertEquals(1, dispenser.inCoinReturn(PENNY));
+        assertEquals(1, coinManager.inCoinReturn(PENNY));
     }
 
-    @Test
-    public void nicklesAreValid() {
-        assertTrue(calculate.isValid(NICKEL));
-    }
-
-    @Test
-    public void quartersAreValid() {
-        assertTrue(calculate.isValid(QUARTER));
-    }
 
     @Test
     public void selectProduct() {
