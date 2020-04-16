@@ -27,7 +27,7 @@ public class VendingMachine {
     }
 
     public void reset() {
-        calculate.resetSum();
+        calculate.setSum(0);
         coinManager.reset();
         dispenser.collect();
         inventory.resetSelection();

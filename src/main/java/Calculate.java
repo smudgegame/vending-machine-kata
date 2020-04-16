@@ -27,8 +27,8 @@ public class Calculate {
         this.dispenser = dispenser;
     }
 
-    void resetSum() {
-        sum = 0;
+    void setSum(int sum) {
+        this.sum = sum;
     }
 
     void addToSum(int weight) {
@@ -68,5 +68,7 @@ public class Calculate {
         }
     }
 
-
+    public int credit(int price) {
+        return sum-price;
+    }
 }

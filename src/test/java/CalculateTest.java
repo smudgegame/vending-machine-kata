@@ -15,6 +15,7 @@ public class CalculateTest {
     private static final int QUARTER = 4;
 
     private static Calculate calculate;
+    private static Inventory inventory;
 
     @BeforeClass
     public static void setUp() {
@@ -22,7 +23,7 @@ public class CalculateTest {
         Dispenser dispenser = new Dispenser(product);
 
         Map<String, Integer> productPrice = new HashMap<>();
-        Inventory inventory = new Inventory(productPrice, product);
+        inventory = new Inventory(productPrice, product);
 
         Map<Integer, Integer> valueMap = new HashMap<>();
         calculate = new Calculate(0, valueMap, inventory, dispenser);
@@ -71,5 +72,12 @@ public class CalculateTest {
     @Test
     public void isValidWeight() {
         assertTrue(calculate.isValid(QUARTER));
+    }
+
+    @Test
+    public void credit() {
+        calculate.setSum(100);
+        inventory.setProduct("candy");
+        assertEquals(35, calculate.credit(inventory.getPrice()));
     }
 }
