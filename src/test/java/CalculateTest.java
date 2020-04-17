@@ -24,8 +24,9 @@ public class CalculateTest {
         String product = "";
         Dispenser dispenser = new Dispenser(product);
 
+        Map<String, Integer> productStock = new HashMap<>();
         Map<String, Integer> productPrice = new HashMap<>();
-        inventory = new Inventory(productPrice, product);
+        inventory = new Inventory(productStock, productPrice, product);
 
         Map<Integer, Integer> valueMap = new HashMap<>();
         calculate = new Calculate(0, valueMap, inventory, dispenser);

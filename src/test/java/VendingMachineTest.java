@@ -29,8 +29,9 @@ public class VendingMachineTest {
 
         dispenser = new Dispenser(product);
 
+        Map<String, Integer> productStock = new HashMap<>();
         Map<String, Integer> productPrice = new HashMap<>();
-        inventory = new Inventory(productPrice, product);
+        inventory = new Inventory(productStock, productPrice, product);
 
         Map<Integer, Integer> valueMap = new HashMap<>();
         Calculate calculate = new Calculate(0, valueMap, inventory, dispenser);
@@ -106,6 +107,19 @@ public class VendingMachineTest {
         assertEquals(1, coinManager.inCoinReturn(QUARTER));
         assertEquals(1, coinManager.inCoinReturn(DIME));
         assertEquals(1, coinManager.inCoinReturn(NICKEL));
+    }
+
+    @Test
+    public void resetButton() {
+        vendingMachine.reset();
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(DIME);
+        vendingMachine.select("reset");
+        assertEquals(4, coinManager.inCoinReturn(QUARTER));
+        assertEquals(1, coinManager.inCoinReturn(DIME));
     }
 
 }
