@@ -56,4 +56,12 @@ public class InventoryTest {
         assertEquals(5, inStock);
     }
 
+    @Test
+    public void productPurchased() {
+        inventory.stock("cola", 5);
+        inventory.purchase("cola");
+        inventory.purchase("cola");
+        assertEquals(3, inventory.inStock("cola"));
+    }
+
 }

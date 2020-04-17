@@ -35,6 +35,15 @@ public class Inventory {
         productStock.put(product, toStock);
     }
 
+    public int inStock(String product) {
+        return productStock.get(product);
+    }
+
+    public void purchase(String product) {
+        int currentStock = productStock.get(product);
+        productStock.put(product, currentStock - 1);
+    }
+
     public void resetSelection() {
         currentProduct = "";
     }
