@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class InventoryTest {
 
@@ -58,10 +59,9 @@ public class InventoryTest {
 
     @Test
     public void productPurchased() {
+        inventory.setProduct("cola");
         inventory.stock("cola", 5);
-        inventory.purchase("cola");
-        inventory.purchase("cola");
-        assertEquals(3, inventory.inStock("cola"));
+        assertTrue(inventory.inStock());
     }
 
 }

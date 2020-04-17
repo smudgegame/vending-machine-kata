@@ -35,8 +35,8 @@ public class Inventory {
         productStock.put(product, toStock);
     }
 
-    public int inStock(String product) {
-        return productStock.get(product);
+    public boolean inStock() {
+        return !productStock.equals(0);
     }
 
     public void purchase(String product) {
