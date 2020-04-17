@@ -26,7 +26,7 @@ public class VendingMachine {
         for (int weight : calculate.change()) {
             coinManager.toCoinReturn(weight);
         }
-        calculate.update();
+        calculate.dispense();
     }
 
     public void reset() {
@@ -34,5 +34,6 @@ public class VendingMachine {
         coinManager.reset();
         dispenser.collect();
         inventory.resetSelection();
+        inventory.clearStock();
     }
 }

@@ -36,7 +36,7 @@ public class Inventory {
     }
 
     public boolean inStock() {
-        return !productStock.equals(0);
+        return productStock.getOrDefault(currentProduct,0) != 0;
     }
 
     public void purchase(String product) {
@@ -46,5 +46,9 @@ public class Inventory {
 
     public void resetSelection() {
         currentProduct = "";
+    }
+
+    public void clearStock() {
+        productStock.clear();
     }
 }

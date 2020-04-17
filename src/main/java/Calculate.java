@@ -50,19 +50,25 @@ public class Calculate {
             if (sum == 0) display = "INSERT COIN";
             else display = "$" + (double) sum / 100;
         } else {
-            if (sum >= inventory.getPrice()) {
-                display = "THANK YOU";
-                inventory.resetSelection();
-                sum = 0;
+            if (inventory.inStock()) {
+                if (sum >= inventory.getPrice()) {
+                    display = "THANK YOU";
+                    inventory.resetSelection();
+                    sum = 0;
+                } else {
+                    display = "PRICE";
+                    inventory.resetSelection();
+                }
             } else {
-                display = "PRICE";
+                display = "SOLD OUT";
                 inventory.resetSelection();
             }
         }
         return display;
     }
 
-    void update() {
+
+    void dispense() {
         if (sum >= inventory.getPrice()) {
             dispenser.dispense(inventory.getProduct());
         }

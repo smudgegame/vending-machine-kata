@@ -67,6 +67,7 @@ public class VendingMachineTest {
     @Test
     public void notEnoughMoney() {
         vendingMachine.reset();
+        inventory.stock("cola",1);
         vendingMachine.select("cola");
         assertEquals("PRICE", vendingMachine.display());
         assertEquals("INSERT COIN", vendingMachine.display());
@@ -75,6 +76,7 @@ public class VendingMachineTest {
     @Test
     public void purchaseProduct() {
         vendingMachine.reset();
+        inventory.stock("cola",1);
         vendingMachine.insertCoin(QUARTER);
         vendingMachine.insertCoin(QUARTER);
         vendingMachine.insertCoin(QUARTER);
@@ -120,6 +122,15 @@ public class VendingMachineTest {
         vendingMachine.select("reset");
         assertEquals(4, coinManager.inCoinReturn(QUARTER));
         assertEquals(1, coinManager.inCoinReturn(DIME));
+    }
+
+    @Test
+    public void soldOut() {
+        vendingMachine.reset();
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.select("chips");
+        assertEquals("SOLD OUT", vendingMachine.display());
     }
 
 }
