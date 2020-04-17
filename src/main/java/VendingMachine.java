@@ -23,6 +23,9 @@ public class VendingMachine {
 
     public void select(String product) {
         inventory.setProduct(product);
+        for (int weight : calculate.change()) {
+            coinManager.toCoinReturn(weight);
+        }
         calculate.update();
     }
 

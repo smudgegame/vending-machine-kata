@@ -1,3 +1,4 @@
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.HashMap;
@@ -8,29 +9,30 @@ import static org.junit.Assert.assertEquals;
 public class CoinManagerTest {
 
     private static final int DIME = 1;
+    private static CoinManager coinManager;
+    @BeforeClass
+    public static void setUp() {
+        Map<Integer, Integer> coinHolding = new HashMap<>();
+        Map<Integer, Integer> coinReturn = new HashMap<>();
+        coinManager = new CoinManager(coinHolding, coinReturn);
+    }
 
     @Test
     public void holdingCoin() {
-        Map<Integer, Integer> coinHolding = new HashMap<>();
-        Map<Integer, Integer> coinReturn = new HashMap<>();
-        CoinManager coinManager = new CoinManager(coinHolding, coinReturn);
+        coinManager.reset();
         assertEquals(0, coinManager.holding(DIME));
     }
 
     @Test
     public void receiveCoin() {
-        Map<Integer, Integer> coinHolding = new HashMap<>();
-        Map<Integer, Integer> coinReturn = new HashMap<>();
-        CoinManager coinManager = new CoinManager(coinHolding, coinReturn);
+        coinManager.reset();
         coinManager.receiveCoin(DIME);
         assertEquals(1, coinManager.holding(DIME));
     }
 
     @Test
     public void receiveMultiple() {
-        Map<Integer, Integer> coinHolding = new HashMap<>();
-        Map<Integer, Integer> coinReturn = new HashMap<>();
-        CoinManager coinManager = new CoinManager(coinHolding, coinReturn);
+        coinManager.reset();
         coinManager.receiveCoin(DIME);
         coinManager.receiveCoin(DIME);
         assertEquals(2, coinManager.holding(DIME));
@@ -38,18 +40,15 @@ public class CoinManagerTest {
 
     @Test
     public void inCoinReturn() {
-        Map<Integer, Integer> coinHolding = new HashMap<>();
-        Map<Integer, Integer> coinReturn = new HashMap<>();
-        CoinManager coinManager = new CoinManager(coinHolding, coinReturn);
+        coinManager.reset();
         assertEquals(0, coinManager.inCoinReturn(DIME));
     }
 
     @Test
     public void toCoinReturn() {
-        Map<Integer, Integer> coinHolding = new HashMap<>();
-        Map<Integer, Integer> coinReturn = new HashMap<>();
-        CoinManager coinManager = new CoinManager(coinHolding, coinReturn);
+        coinManager.reset();
         coinManager.toCoinReturn(DIME);
         assertEquals(1, coinManager.inCoinReturn(DIME));
     }
+
 }

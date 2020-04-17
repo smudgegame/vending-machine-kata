@@ -28,7 +28,9 @@ public class CoinManager {
         coinReturn.put(weight, currentCount + 1);
     }
 
-    public void reset(){
+    public void reset() {
         coinReturn.clear();
+        coinHolding.clear();
     }
+
 }

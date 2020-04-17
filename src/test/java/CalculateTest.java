@@ -93,4 +93,5 @@ public class CalculateTest {
         change.add(NICKEL);
         assertEquals(change, calculate.change());
     }
+
 }

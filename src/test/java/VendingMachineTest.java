@@ -3,7 +3,6 @@ import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 import static org.junit.Assert.assertEquals;
 
@@ -28,7 +27,6 @@ public class VendingMachineTest {
         Map<Integer, Integer> coinReturn = new HashMap<>();
         coinManager = new CoinManager(coinHolding, coinReturn);
 
-        Map<Integer, Integer> coinCount = new HashMap<>();
         dispenser = new Dispenser(product);
 
         Map<String, Integer> productPrice = new HashMap<>();
@@ -94,6 +92,20 @@ public class VendingMachineTest {
         vendingMachine.insertCoin(QUARTER);
         vendingMachine.select("candy");
         assertEquals("candy", dispenser.inDispenser());
+    }
+
+    @Test
+    public void makeChangeUponPurchase() {
+        vendingMachine.reset();
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(NICKEL);
+        vendingMachine.select("candy");
+        assertEquals(1, coinManager.inCoinReturn(QUARTER));
+        assertEquals(1, coinManager.inCoinReturn(DIME));
+        assertEquals(1, coinManager.inCoinReturn(NICKEL));
     }
 
 }
