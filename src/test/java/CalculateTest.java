@@ -29,7 +29,7 @@ public class CalculateTest {
         inventory = new Inventory(productStock, productPrice, product);
 
         Map<Integer, Integer> valueMap = new HashMap<>();
-        calculate = new Calculate(0, valueMap, inventory, dispenser);
+        calculate = new Calculate(0, false, valueMap, inventory, dispenser);
     }
 
     @Test
@@ -93,6 +93,13 @@ public class CalculateTest {
         change.add(DIME);
         change.add(NICKEL);
         assertEquals(change, calculate.change());
+    }
+
+    @Test
+    public void exactChange() {
+        calculate.reset();
+        calculate.exactChange(true);
+        assertEquals("EXACT CHANGE ONLY", calculate.display());
     }
 
 }

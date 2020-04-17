@@ -5,6 +5,7 @@ import java.util.Map;
 public class Calculate {
 
     private int sum;
+    private boolean exactChange;
 
     private static final int DIME_VALUE = 10;
     private static final int NICKEL_VALUE = 5;
@@ -17,8 +18,9 @@ public class Calculate {
     private Inventory inventory;
     private Dispenser dispenser;
 
-    public Calculate(int sum, Map<Integer, Integer> valueMap, Inventory inventory, Dispenser dispenser) {
+    public Calculate(int sum, boolean exactChange, Map<Integer, Integer> valueMap, Inventory inventory, Dispenser dispenser) {
         this.sum = sum;
+        this.exactChange = exactChange;
         this.valueMap = valueMap;
         valueMap.put(QUARTER_WEIGHT, QUARTER_VALUE);
         valueMap.put(DIME_WEIGHT, DIME_VALUE);
@@ -47,8 +49,13 @@ public class Calculate {
     String display() {
         String display;
         if (inventory.getProduct().equals("")) {
-            if (sum == 0) display = "INSERT COIN";
-            else display = "$" + (double) sum / 100;
+            if(sum ==0) {
+                if (exactChange) {
+                    display = "EXACT CHANGE ONLY";
+                } else {
+                    display = "INSERT COIN";
+                }
+            } else display = "$" + (double) sum / 100;
         } else {
             if (inventory.inStock()) {
                 if (sum >= inventory.getPrice()) {
@@ -91,5 +98,15 @@ public class Calculate {
                 change.add(weight);
             }
         return change;
+    }
+
+    void reset() {
+        setSum(0);
+        inventory.resetSelection();
+        inventory.clearStock();
+    }
+
+    public void exactChange(boolean exactChange) {
+        this.exactChange = exactChange;
     }
 }

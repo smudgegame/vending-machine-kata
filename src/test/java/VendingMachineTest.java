@@ -34,7 +34,7 @@ public class VendingMachineTest {
         inventory = new Inventory(productStock, productPrice, product);
 
         Map<Integer, Integer> valueMap = new HashMap<>();
-        Calculate calculate = new Calculate(0, valueMap, inventory, dispenser);
+        Calculate calculate = new Calculate(0, false, valueMap, inventory, dispenser);
         vendingMachine = new VendingMachine(calculate, coinManager, dispenser, inventory);
     }
 
