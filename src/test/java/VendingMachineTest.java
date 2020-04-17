@@ -14,6 +14,7 @@ public class VendingMachineTest {
     private static final int QUARTER = 4;
     private static VendingMachine vendingMachine;
 
+    private static Calculate calculate;
     private static CoinManager coinManager;
     private static Inventory inventory;
     private static Dispenser dispenser;
@@ -34,7 +35,7 @@ public class VendingMachineTest {
         inventory = new Inventory(productStock, productPrice, product);
 
         Map<Integer, Integer> valueMap = new HashMap<>();
-        Calculate calculate = new Calculate(0, false, valueMap, inventory, dispenser);
+        calculate = new Calculate(0, false, valueMap, inventory, dispenser);
         vendingMachine = new VendingMachine(calculate, coinManager, dispenser, inventory);
     }
 
@@ -67,7 +68,7 @@ public class VendingMachineTest {
     @Test
     public void notEnoughMoney() {
         vendingMachine.reset();
-        inventory.stock("cola",1);
+        inventory.stock("cola", 1);
         vendingMachine.select("cola");
         assertEquals("PRICE", vendingMachine.display());
         assertEquals("INSERT COIN", vendingMachine.display());
@@ -76,7 +77,7 @@ public class VendingMachineTest {
     @Test
     public void purchaseProduct() {
         vendingMachine.reset();
-        inventory.stock("cola",1);
+        inventory.stock("cola", 1);
         vendingMachine.insertCoin(QUARTER);
         vendingMachine.insertCoin(QUARTER);
         vendingMachine.insertCoin(QUARTER);
@@ -131,6 +132,35 @@ public class VendingMachineTest {
         vendingMachine.insertCoin(QUARTER);
         vendingMachine.select("chips");
         assertEquals("SOLD OUT", vendingMachine.display());
+    }
+
+    @Test
+    public void masterTest() {
+        vendingMachine.reset();
+        inventory.stock("chips", 2);
+        inventory.stock("cola", 2);
+        inventory.stock("candy", 1);
+        calculate.exactChange(true);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(NICKEL);
+        vendingMachine.select("chips");
+        assertEquals("THANK YOU", vendingMachine.display());
+        assertEquals(0, coinManager.inCoinReturn(3));
+        assertEquals("EXACT CHANGE ONLY", vendingMachine.display());
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.select("chips");
+        assertEquals("THANK YOU", vendingMachine.display());
+        vendingMachine.select("Chips");
+        assertEquals("PRICE", vendingMachine.display());
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.insertCoin(QUARTER);
+        vendingMachine.select("Chips");
+        assertEquals("SOLD OUT", vendingMachine.display());
+        assertEquals("$0.5", vendingMachine.display());
+        vendingMachine.select("reset");
+        assertEquals(2, coinManager.inCoinReturn(QUARTER));
     }
 
 }

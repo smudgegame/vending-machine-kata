@@ -49,7 +49,7 @@ public class Calculate {
     String display() {
         String display;
         if (inventory.getProduct().equals("")) {
-            if(sum ==0) {
+            if (sum == 0) {
                 if (exactChange) {
                     display = "EXACT CHANGE ONLY";
                 } else {
@@ -57,23 +57,23 @@ public class Calculate {
                 }
             } else display = "$" + (double) sum / 100;
         } else {
-            if (inventory.inStock()) {
-                if (sum >= inventory.getPrice()) {
+            if (sum >= inventory.getPrice()) {
+                if (inventory.inStock()) {
                     display = "THANK YOU";
+                    inventory.purchase(inventory.getProduct());
                     inventory.resetSelection();
                     sum = 0;
                 } else {
-                    display = "PRICE";
+                    display = "SOLD OUT";
                     inventory.resetSelection();
                 }
             } else {
-                display = "SOLD OUT";
+                display = "PRICE";
                 inventory.resetSelection();
             }
         }
         return display;
     }
-
 
     void dispense() {
         if (sum >= inventory.getPrice()) {
@@ -86,24 +86,28 @@ public class Calculate {
     }
 
     public List<Integer> change() {
-        List<Integer> change = new ArrayList<>();
-        List<Integer> weights = new ArrayList<>();
-        weights.add(4);
-        weights.add(1);
-        weights.add(3);
-        int credit = credit(inventory.getPrice());
-        for (int weight : weights)
-            while (credit >= value(weight)) {
-                credit = credit - value(weight);
-                change.add(weight);
-            }
-        return change;
+        if (exactChange && !inventory.getProduct().equals("reset")) return new ArrayList<>();
+        else {
+            List<Integer> change = new ArrayList<>();
+            List<Integer> weights = new ArrayList<>();
+            weights.add(4);
+            weights.add(1);
+            weights.add(3);
+            int credit = credit(inventory.getPrice());
+            for (int weight : weights)
+                while (credit >= value(weight)) {
+                    credit = credit - value(weight);
+                    change.add(weight);
+                }
+            return change;
+        }
     }
 
     void reset() {
         setSum(0);
         inventory.resetSelection();
         inventory.clearStock();
+        exactChange = false;
     }
 
     public void exactChange(boolean exactChange) {

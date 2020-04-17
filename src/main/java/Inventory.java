@@ -36,19 +36,21 @@ public class Inventory {
     }
 
     public boolean inStock() {
-        return productStock.getOrDefault(currentProduct,0) != 0;
+        return productStock.getOrDefault(currentProduct, 0) != 0;
     }
 
-    public void purchase(String product) {
+    void purchase(String product) {
         int currentStock = productStock.get(product);
-        productStock.put(product, currentStock - 1);
+        if (currentStock != 0) {
+            productStock.put(product, currentStock - 1);
+        }
     }
 
     public void resetSelection() {
         currentProduct = "";
     }
 
-    public void clearStock() {
+    void clearStock() {
         productStock.clear();
     }
 }
